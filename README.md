@@ -78,11 +78,12 @@ ASSIGNMENT.md               # Full brief — read this first
   "id": "uuid",
   "title": "string",
   "description": "string",
-  "status": "pending | in-progress | completed",
+  "status": "todo | in_progress | done",
   "priority": "low | medium | high",
   "dueDate": "ISO 8601 or null",
   "completedAt": "ISO 8601 or null",
-  "createdAt": "ISO 8601"
+  "createdAt": "ISO 8601",
+  "assignee": "string (optional, set via PATCH /tasks/:id/assign)"
 }
 ```
 

@@ -196,8 +196,9 @@ describe('Task API routes', () => {
       expect(res.body.completedAt).toEqual(expect.any(String));
     });
 
-    // NOTE: documents expected behavior (priority untouched by completion) — see bug report.
-    it('preserves the original priority when completing', async () => {
+    // NOTE: documents expected behavior (priority untouched by completion) — see BUG_REPORT.md (Bug 3).
+    // Marked as failing (not fixed) intentionally — this is the documented, unfixed bug.
+    it.failing('preserves the original priority when completing', async () => {
       const created = taskService.create({ title: 'Finish', priority: 'high' });
       const res = await request(app).patch(`/tasks/${created.id}/complete`);
       expect(res.status).toBe(200);

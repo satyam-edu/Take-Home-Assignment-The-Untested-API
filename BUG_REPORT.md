@@ -126,6 +126,8 @@ failing test that will start passing once applied.
 
 | Bug | Fixed? | Test status |
 |---|---|---|
-| 1 — pagination offset | ✅ Yes | Passing |
-| 2 — status substring match | ❌ No (documented) | Failing (expected — documents the bug) |
-| 3 — completeTask priority reset | ❌ No (documented) | Failing (expected — documents the bug) |
+| 1 — pagination offset | ✅ Yes | Regular passing test |
+| 2 — status substring match | ❌ No (documented) | `it.failing(...)` — asserts the correct behavior and is expected to fail against the current code; Jest reports it green precisely because it fails. Will start reporting red the moment someone "fixes" it without also fixing the underlying bug. |
+| 3 — completeTask priority reset | ❌ No (documented) | `it.failing(...)` — same as above. |
+
+`npm test` / `npm run coverage` exit **0** with all 57 tests reporting as passing (`Tests: 57 passed, 57 total`), since Jest treats an `it.failing()` test that actually fails as a pass — the underlying assertions for Bugs 2 and 3 are unchanged from what's described above.

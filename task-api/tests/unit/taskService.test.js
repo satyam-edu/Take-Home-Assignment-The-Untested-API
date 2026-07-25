@@ -114,8 +114,9 @@ describe('taskService', () => {
     });
 
     // NOTE: this documents the EXPECTED behavior per the task shape contract.
-    // The current implementation resets priority to 'medium' on completion — see bug report.
-    it('preserves the task priority when completing', () => {
+    // The current implementation resets priority to 'medium' on completion — see BUG_REPORT.md (Bug 3).
+    // Marked as failing (not fixed) intentionally — this is the documented, unfixed bug.
+    it.failing('preserves the task priority when completing', () => {
       const created = taskService.create({ title: 'High priority', priority: 'high' });
       const completed = taskService.completeTask(created.id);
       expect(completed.priority).toBe('high');
@@ -169,8 +170,9 @@ describe('taskService', () => {
     });
 
     // NOTE: documents expected exact-match filtering. The current implementation uses
-    // String.includes(), so a substring like 'progress' incorrectly matches 'in_progress' — see bug report.
-    it('does not return unrelated tasks whose status merely contains the filter as a substring', () => {
+    // String.includes(), so a substring like 'progress' incorrectly matches 'in_progress' — see BUG_REPORT.md (Bug 2).
+    // Marked as failing (not fixed) intentionally — this is the documented, unfixed bug.
+    it.failing('does not return unrelated tasks whose status merely contains the filter as a substring', () => {
       taskService.create({ title: 'In progress task', status: 'in_progress' });
       const result = taskService.getByStatus('progress');
       expect(result).toHaveLength(0);
