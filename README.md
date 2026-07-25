@@ -4,6 +4,10 @@ A 2-day take-home assignment. You'll read unfamiliar code, write tests, track do
 
 Read **[ASSIGNMENT.md](./ASSIGNMENT.md)** for the full brief before you start.
 
+> **Submission:** see [SUBMISSION.md](./SUBMISSION.md) for the architecture summary, design
+> decisions, and notes on what's next, and [BUG_REPORT.md](./BUG_REPORT.md) for the full bug
+> writeups (fixed and documented).
+
 ---
 
 ## A note on AI tools
@@ -65,7 +69,7 @@ ASSIGNMENT.md               # Full brief — read this first
 | `DELETE` | `/tasks/:id`              | Delete a task (returns 204)              |
 | `PATCH`  | `/tasks/:id/complete`     | Mark a task as complete                  |
 | `GET`    | `/tasks/stats`            | Counts by status + overdue count         |
-| `PATCH`  | `/tasks/:id/assign`       | **Assign a task to a user** _(to implement)_ |
+| `PATCH`  | `/tasks/:id/assign`       | Assign a task to a user                  |
 
 ### Task shape
 
