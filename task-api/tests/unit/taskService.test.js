@@ -126,6 +126,33 @@ describe('taskService', () => {
     });
   });
 
+  describe('assignTask', () => {
+    it('assigns a trimmed assignee to an existing task', () => {
+      const created = taskService.create({ title: 'Needs an owner' });
+      const assigned = taskService.assignTask(created.id, '  Alice  ');
+      expect(assigned.assignee).toBe('Alice');
+      expect(assigned.id).toBe(created.id);
+    });
+
+    it('overwrites an existing assignee when reassigned', () => {
+      const created = taskService.create({ title: 'Reassign me' });
+      taskService.assignTask(created.id, 'Alice');
+      const reassigned = taskService.assignTask(created.id, 'Bob');
+      expect(reassigned.assignee).toBe('Bob');
+    });
+
+    it('leaves other fields untouched', () => {
+      const created = taskService.create({ title: 'Keep fields', priority: 'high' });
+      const assigned = taskService.assignTask(created.id, 'Alice');
+      expect(assigned.priority).toBe('high');
+      expect(assigned.title).toBe('Keep fields');
+    });
+
+    it('returns null for a non-existent id', () => {
+      expect(taskService.assignTask('non-existent-id', 'Alice')).toBeNull();
+    });
+  });
+
   describe('getByStatus', () => {
     it('returns only tasks matching the exact status', () => {
       taskService.create({ title: 'A', status: 'todo' });
